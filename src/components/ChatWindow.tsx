@@ -26,12 +26,12 @@ export default function ChatWindow({ messages }: { messages: Message[] }) {
       {messages.length === 0 ? (
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="bg-blue-100 dark:bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-robot text-3xl text-blue-600 dark:text-blue-400"></i>
+            <div className="bg-gradient-to-br from-violet-100 via-fuchsia-100 to-pink-100 dark:from-violet-900/70 dark:via-purple-900/60 dark:to-fuchsia-900/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner shadow-white/70 dark:shadow-black/10">
+              <i className="fas fa-wand-magic-sparkles text-3xl text-violet-600 dark:text-fuchsia-300"></i>
             </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Selamat datang!</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-sm">
-              Halloo.. Saya adalah Sontoloyo AI<br>
+            <h2 className="text-xl font-semibold mb-2 text-violet-950 dark:text-white">Selamat datang!</h2>
+            <p className="text-violet-800/80 dark:text-violet-200/80 max-w-sm">
+              Halo, aku Rara AI Asisten!<br>
               </br>
               Anda bisa bertanya tentang apapun terkait informasi yang ada di dalam konten blog saya!
             </p>
@@ -46,19 +46,19 @@ export default function ChatWindow({ messages }: { messages: Message[] }) {
           >
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 ${message.role === 'user'
-                ? 'bg-slate-700 dark:bg-slate-600'
-                : 'bg-blue-600 dark:bg-blue-700'
+                ? 'bg-violet-200 text-violet-800 dark:bg-violet-900 dark:text-violet-100'
+                : 'bg-gradient-to-br from-violet-500 to-fuchsia-500'
                 }`}
             >
               <i
-                className={`fas text-xs ${message.role === 'user' ? 'fa-user' : 'fa-robot'
+                className={`fas text-xs ${                message.role === 'user' ? 'fa-user' : 'fa-wand-magic-sparkles'
                   }`}
               ></i>
             </div>
             <div
               className={`max-w-[80%] px-4 py-3 rounded-2xl ${message.role === 'user'
-                ? 'bg-blue-600 text-white rounded-tr-none'
-                : 'bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 rounded-tl-none border border-gray-200 dark:border-slate-700'
+                ? 'bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white rounded-tr-none shadow-sm shadow-violet-300/40 dark:shadow-violet-950/30'
+                : 'bg-white dark:bg-[#21172f] text-[#291b3b] dark:text-violet-50 rounded-tl-none border border-violet-100 dark:border-violet-900/80 shadow-sm shadow-violet-100/50 dark:shadow-black/10'
                 }`}
             >
               <div className="text-sm leading-relaxed whitespace-pre-wrap break-words">
@@ -82,7 +82,7 @@ export default function ChatWindow({ messages }: { messages: Message[] }) {
                       ),
                       li: ({ node, ...props }) => <li className="ml-1 leading-snug [&>p]:mb-0 [&>p]:inline" {...props} />,
                       strong: ({ node, ...props }) => (
-                        <strong className="font-bold text-gray-900 dark:text-gray-100" {...props} />
+                        <strong className="font-bold text-violet-950 dark:text-violet-100" {...props} />
                       ),
                       p: ({ node, ...props }) => <p className="mb-2 last:mb-0 leading-snug" {...props} />,
                     }}
@@ -99,8 +99,8 @@ export default function ChatWindow({ messages }: { messages: Message[] }) {
               </div>
               <p
                 className={`text-xs mt-2 ${message.role === 'user'
-                  ? 'text-blue-100'
-                  : 'text-gray-500 dark:text-gray-400'
+                  ? 'text-violet-100'
+                  : 'text-violet-500 dark:text-violet-300'
                   }`}
               >
                 {new Date(message.timestamp).toLocaleTimeString('id-ID', {

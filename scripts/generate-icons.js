@@ -9,9 +9,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const SOURCE_IMAGE = join(__dirname, '../src/app/icon.png');
+const SOURCE_IMAGE = join(__dirname, '../public/rara-ai-icon.svg');
 const OUTPUT_DIR = join(__dirname, '../public/icons');
 const SIZES = [72, 96, 128, 144, 152, 180, 192, 384, 512];
+const APP_ICON = join(__dirname, '../src/app/icon.png');
 
 async function generateIcons() {
   // Pastikan folder output ada
@@ -34,10 +35,7 @@ async function generateIcons() {
     const outputFile = join(OUTPUT_DIR, `icon-${size}x${size}.png`);
     try {
       await sharp(SOURCE_IMAGE)
-        .resize(size, size, {
-          fit: 'contain',
-          background: { r: 37, g: 99, b: 235, alpha: 1 }, // bg biru sesuai theme_color
-        })
+        .resize(size, size)
         .png()
         .toFile(outputFile);
       console.log(`✅ Generated: icon-${size}x${size}.png`);
@@ -45,6 +43,12 @@ async function generateIcons() {
       console.error(`❌ Gagal membuat icon-${size}x${size}.png:`, err.message);
     }
   }
+
+  await sharp(SOURCE_IMAGE)
+    .resize(512, 512)
+    .png()
+    .toFile(APP_ICON);
+  console.log('✅ Generated: src/app/icon.png');
 
   console.log('\n🎉 Selesai! Semua icon berhasil dibuat.');
   console.log('📌 Jangan lupa copy icon-source.png ke public/icons/ jika belum ada.');
